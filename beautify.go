@@ -8,6 +8,9 @@ import (
 	"sort"
 )
 
+// TODO: this beautify method is totally mess
+//       it only solve one use-case
+//       find another use-case and update it
 func BeautifyTag(str *model.Struct) {
 	var tagResults []model.TagResult
 	maxLen := make(map[string]int)

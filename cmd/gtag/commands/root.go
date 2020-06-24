@@ -1,14 +1,10 @@
 package commands
 
 import (
-	"bytes"
-	"go/format"
 	"gtag"
 	"gtag/fileparser"
-	"io/ioutil"
 	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -27,34 +23,23 @@ var rootCmd = &cobra.Command{
 			log.Fatalf("failed to get bool: %v", err)
 		}
 
-		absPath, err := filepath.Abs(src)
-		if err != nil {
-			log.Fatalf("directory is invalid, err:%v", err)
+		cfg := &gtag.Config{
+			FileSource:  src,
+			IsOverWrite: isWrite,
 		}
 
-		file, fs, f, err := fileparser.ParseFile(absPath)
+		fileParser, err := fileparser.NewFileParser(cfg)
 		if err != nil {
-			log.Fatalf("failed to parse file %v", err)
+			cmd.PrintErrf("failed to parse file due to %v", err)
+			return
 		}
-
-		var buf bytes.Buffer
-		for _, m := range file {
+		for _, m := range fileParser.FindStructs() {
 			gtag.BeautifyTag(&m)
 		}
-		err = format.Node(&buf, fs, f)
+		err = fileParser.Write()
 		if err != nil {
-			log.Fatalf("failed to format node: %v\n", err)
-		}
-
-		if isWrite {
-			if err := ioutil.WriteFile(absPath, buf.Bytes(), 0); err != nil {
-				log.Fatalf("failed to write file, err :%v", err)
-			}
-		} else {
-			_, err := buf.WriteTo(os.Stdout)
-			if err != nil {
-				log.Fatalf("failed to write file, err :%v", err)
-			}
+			cmd.PrintErrf("failed to write due to %v", err)
+			return
 		}
 	},
 }

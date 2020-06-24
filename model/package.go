@@ -39,6 +39,9 @@ func (t Tags) Get(key string) string {
 }
 
 func (t Tags) GetKeys() (keys []string) {
+	// TODO: splitting the full tag with a space is a not good way
+	//       it'll failed if there's no space between the tags
+	//       use tokenize instead
 	for _, tag := range strings.Split(strings.Trim(t.Str, "`"), " ") {
 		if k := strings.Split(tag, ":")[0]; k != "" {
 			keys = append(keys, k)

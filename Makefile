@@ -1,2 +1,2 @@
 install:
-	@go install github.com/adzimzf/gtags/
+	@go install github.com/adzimzf/gtag/cmd/gtag
