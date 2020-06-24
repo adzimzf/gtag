@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"go/ast"
-	"gtats/model"
+	"gtag/model"
 	"sort"
 )
 

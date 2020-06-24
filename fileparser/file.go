@@ -5,7 +5,7 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
-	"gtats/model"
+	"gtag/model"
 )
 
 func ParseFile(source string) ([]model.Struct, *token.FileSet, *ast.File, error) {

@@ -1,6 +1,6 @@
 package main
 
-import "gtats/cmd/gtag/commands"
+import "gtag/cmd/gtag/commands"
 
 func main() {
 	commands.Execute()

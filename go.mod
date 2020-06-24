@@ -1,4 +1,4 @@
-module gtats
+module gtag
 
 go 1.13
 

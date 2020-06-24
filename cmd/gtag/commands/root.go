@@ -3,6 +3,8 @@ package commands
 import (
 	"bytes"
 	"go/format"
+	"gtag"
+	"gtag/fileparser"
 	"io/ioutil"
 	"log"
 	"os"
@@ -37,7 +39,7 @@ var rootCmd = &cobra.Command{
 
 		var buf bytes.Buffer
 		for _, m := range file {
-			gtags.BeautifyTag(&m)
+			gtag.BeautifyTag(&m)
 		}
 		err = format.Node(&buf, fs, f)
 		if err != nil {
@@ -60,7 +62,7 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	rootCmd.Flags().StringP("input", "i", "", "input is a Golang file you want to format")
 	rootCmd.Flags().BoolP("write", "w", false, "write will overwrite your input file")
-	rootCmd.MarkFlagRequired("input")
+	_ = rootCmd.MarkFlagRequired("input")
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
