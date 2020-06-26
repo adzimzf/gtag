@@ -36,9 +36,9 @@ type IncompleteTag struct {
 	ID            int64     `db:"id"              json:"id"`
 	Code          string    `db:"code"           gorm:"code"           json:"code"`
 	CategoryName  string    `db:"category_name"  gorm:"category_name"  json:"category_name"`
-	Name          string    `gorm:"name" db:"name"            json:"name"`
-	UpdatedBy     int64     `db:"updated_by"          json:"updated_by" gorm:"updated_by"`
-	UpdatedAt     time.Time `db:"updated_at"     gorm:"updated_at"     json:"updated_at"`
+	Name          string    `gorm:"name" db:"name" json:"name"`
+	UpdatedBy     int64     `db:"updated_by"   json:"updated_by" gorm:"updated_by"`
+	UpdatedAt     time.Time ` json:"updated_at" db:"updated_at"     gorm:"updated_at"`
 	OverridePrice bool      `db:"override_price" gorm:"override_price" json:"override_price"`
 	OperatorName  string    `db:"operator_name"    json:"operator_name"`
 }
