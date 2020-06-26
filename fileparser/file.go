@@ -50,7 +50,7 @@ func (f *FileParser) Write() error {
 	return ioutil.WriteFile(f.absSrc, buf.Bytes(), 0)
 }
 
-func (f *FileParser) FindStructs() (res []model.Struct) {
+func (f *FileParser) FindStructs() (res []*model.Struct) {
 	for _, decl := range f.file.Decls {
 		gd, ok := decl.(*ast.GenDecl)
 		if !ok || gd.Tok != token.TYPE {
@@ -66,7 +66,7 @@ func (f *FileParser) FindStructs() (res []model.Struct) {
 				continue
 			}
 			res = append(res,
-				model.Struct{
+				&model.Struct{
 					Fields: getFields(st),
 					Node:   st,
 				})
@@ -78,8 +78,19 @@ func (f *FileParser) FindStructs() (res []model.Struct) {
 func getFields(st *ast.StructType) []model.Field {
 	var fields []model.Field
 	for _, field := range st.Fields.List {
+
+		var fieldName string
+		if len(field.Names) > 0 {
+			fieldName = field.Names[0].Name
+		} else {
+			idn, ok := field.Type.(*ast.Ident)
+			if ok {
+				fieldName = idn.Name
+			}
+		}
+
 		fields = append(fields, model.Field{
-			Name: field.Names[0].Name,
+			Name: fieldName,
 			Tags: parseTags(field.Tag),
 		})
 	}
@@ -92,5 +103,5 @@ func parseTags(bl *ast.BasicLit) model.Tags {
 	if bl != nil {
 		tagString = bl.Value
 	}
-	return model.Tags{Str: tagString}
+	return model.Tags{Str: tagString, Node: bl}
 }

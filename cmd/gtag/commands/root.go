@@ -34,7 +34,7 @@ var rootCmd = &cobra.Command{
 			return
 		}
 		for _, m := range fileParser.FindStructs() {
-			gtag.BeautifyTag(&m)
+			gtag.Beautify(m)
 		}
 		err = fileParser.Write()
 		if err != nil {

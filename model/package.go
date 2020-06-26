@@ -51,7 +51,7 @@ func (t Tags) GetKeys() (keys []string) {
 }
 
 type TagResult struct {
-	FiledName string
+	FieldName string
 	Values    map[string]TagValue
 }
 type TagValue struct {
