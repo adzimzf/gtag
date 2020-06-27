@@ -8,7 +8,7 @@ it'll transform your mess struct
  </p>
  Into
   <p align="center">
-    <img src="./img/before.png" alt="After" width="738">
+    <img src="./img/after.png" alt="After" width="738">
   </p>
  
 # Installation
