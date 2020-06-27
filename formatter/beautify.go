@@ -1,4 +1,4 @@
-package gtag
+package formatter
 
 import (
 	"fmt"
@@ -20,8 +20,8 @@ func addSpace(n int) string {
 	return s
 }
 
-// Beautify beautify the tag of given struct
-func Beautify(str *model.Struct) {
+// Format formats each tags of given struct
+func Format(str *model.Struct) {
 	tagMapCount := make(map[string]tagMap)
 	for _, field := range str.Fields {
 		for _, tagKey := range field.Tags.GetKeys() {
@@ -46,7 +46,7 @@ func Beautify(str *model.Struct) {
 		}
 	}
 
-	sortedKey := sortByCount(tagMapCount)
+	sortedKey := sortTagMap(tagMapCount)
 	for _, field := range str.Fields {
 		var newTag string
 		for _, key := range sortedKey {
@@ -71,7 +71,9 @@ func writeToNode(node ast.Node, newTag string) {
 	tag.Value = fmt.Sprintf("`%s`", strings.TrimRight(newTag, " "))
 }
 
-func sortByCount(tagMapCount map[string]tagMap) (keys []string) {
+// sortTagMap sort the tagMap by
+// count and the key
+func sortTagMap(tagMapCount map[string]tagMap) (keys []string) {
 	type kv struct {
 		Key   string
 		Value tagMap
@@ -83,7 +85,13 @@ func sortByCount(tagMapCount map[string]tagMap) (keys []string) {
 	}
 
 	sort.Slice(ss, func(i, j int) bool {
-		return ss[i].Value.Count > ss[j].Value.Count
+		if ss[i].Value.Count > ss[j].Value.Count {
+			return true
+		}
+		if ss[i].Value.Count < ss[j].Value.Count {
+			return false
+		}
+		return ss[i].Key < ss[j].Key
 	})
 
 	for _, kv := range ss {

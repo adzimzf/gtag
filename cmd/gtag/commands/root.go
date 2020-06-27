@@ -3,6 +3,7 @@ package commands
 import (
 	"gtag"
 	"gtag/fileparser"
+	"gtag/formatter"
 	"log"
 	"os"
 
@@ -34,7 +35,7 @@ var rootCmd = &cobra.Command{
 			return
 		}
 		for _, m := range fileParser.FindStructs() {
-			gtag.Beautify(m)
+			formatter.Format(m)
 		}
 		err = fileParser.Write()
 		if err != nil {

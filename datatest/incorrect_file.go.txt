@@ -1,0 +1,11 @@
+package sample
+
+// IncorrectStruct test the result of incorrect struct
+type IncorrectStruct struct {
+	ID            int64     `db:"id"              json:"id"`
+	Code          string    `db:"code"           gorm:"code"           json:"code"`
+	CategoryName  string    `db:"category_name"  gorm:"category_name"  json:"category_name"`
+	Name          string    `gorm:"name" db:"name" json:"name"`
+	UpdatedBy     int64     `db:"updated_by"   json:"updated_by" gorm:"updated_by"`
+	OperatorName  string    `db:"
+}
