@@ -1,12 +1,12 @@
 package commands
 
 import (
-	"gtag"
-	"gtag/fileparser"
-	"gtag/formatter"
 	"log"
 	"os"
 
+	"github.com/adzimzf/gtag"
+	"github.com/adzimzf/gtag/fileparser"
+	"github.com/adzimzf/gtag/formatter"
 	"github.com/spf13/cobra"
 )
 

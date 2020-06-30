@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gtag/cmd/gtag/commands"
+	"github.com/adzimzf/gtag/cmd/gtag/commands"
 )
 
 func main() {

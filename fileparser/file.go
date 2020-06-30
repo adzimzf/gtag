@@ -7,10 +7,11 @@ import (
 	"go/format"
 	"go/parser"
 	"go/token"
-	"gtag"
-	"gtag/model"
 	"io/ioutil"
 	"path/filepath"
+
+	"github.com/adzimzf/gtag"
+	"github.com/adzimzf/gtag/model"
 )
 
 type FileParser struct {

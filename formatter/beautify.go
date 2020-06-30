@@ -3,9 +3,10 @@ package formatter
 import (
 	"fmt"
 	"go/ast"
-	"gtag/model"
 	"sort"
 	"strings"
+
+	"github.com/adzimzf/gtag/model"
 )
 
 type tagMap struct {
