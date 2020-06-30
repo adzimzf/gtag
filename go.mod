@@ -1,4 +1,4 @@
-module gtag
+module github.com/adzimzf/gtag
 
 go 1.13
 
