@@ -16,5 +16,9 @@ main
 # vendor/
 vendor/
 
+
+# Distribution
+dist/
+
 # IDE
 .idea/

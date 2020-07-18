@@ -1,15 +1,11 @@
 # gtag
 gtag is a simple tool for Golang tag, currently only support for tag formatter. 
 
-it'll transform your mess struct 
+it'll transform your mess struct tag into beauty one 
  
  <p align="center">
-   <img src="./img/before.png" alt="Before" width="738">
+   <img src="./img/before_after.gif" alt="Before" width="738">
  </p>
- Into
-  <p align="center">
-    <img src="./img/after.png" alt="After" width="738">
-  </p>
  
 # Installation
 This tool requires [Go installed](http://golang.org/doc/install.html#releases).
