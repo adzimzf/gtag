@@ -11,7 +11,8 @@ it'll transform your mess struct tag into beauty one
 This tool requires [Go installed](http://golang.org/doc/install.html#releases).
 To get the latest released version use:
 ```bash
-GO111MODULE=on go get github.com/adzimzf/gtag@latest
+GO111MODULE=off go get github.com/adzimzf/gtag/cmd/gtag
+go install github.com/adzimzf/gtag/cmd/gtag
 ```
 
 # Integration
